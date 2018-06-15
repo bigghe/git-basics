@@ -1,0 +1,41 @@
+
+Riferimento
+
+- https://git-scm.com/book/en/v2/
+- http://nfarina.com/post/9868516270/git-is-simpler
+- https://www.youtube.com/watch?v=4XpnKHJAok8&t
+- https://www.youtube.com/watch?v=vKRZKau-8MY
+- http://gitimmersion.com/
+- http://rogerdudler.github.io/git-guide/
+
+
+Note
+
+1- "# > git basics" o "$ git basics"  (in alto a sinistra di ogni slide, font in modo che sembri un comando bash)
+2- Gif (es. git merge, git is from command line, ecc..)
+3- Ultima slide: joke in case of fire
+
+
+
+
+Argomenti
+
+- About vc
+	- what is a vc
+	- types of vc
+	- why git
+	- who use it
+- story
+- basics
+	- snapshots, not differences
+	- repository is local
+		- "object" stored in .git directory, little note to they sha1 name [Pro Git: “A higher probability exists that every member of your programming team will be attacked and killed by wolves in unrelated incidents on the same night.]
+	- Git Has Integrity
+	- The Three States (image of Working Dir, Staging Area, .git directory)
+	- basic Git workflow
+- command line & graphic tool
+- first time makes you a [man] real programmer (man scritto sbarrato)
+- real basics:
+	- get a remote repo
+	- 2.2 -> 2.7
+	- branching feature
