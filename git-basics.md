@@ -569,113 +569,103 @@ Testo
 			che riporta l'informazione dei due commit padre di questo merge commit.
 
 						
-			"History navigation"
-			[slide vuota]
-			Dopo questo breve recap di quanto visto ieri cominciamo oggi con il vedere "come navigare la storia" di un repository git.
-			Durante le nostre attività lavorative potremmo aver bisogno ad un certo punto di dover controllare cosa è successo al progetto, cosa è successo ai file versionati
-			nel repository git e consultare appunto la storia del progetto.
-			Per quanto detto ieri durante la spiegazione dei messaggi dei commit, questi sono un tassello molto importante in quanto proprio la loro concatenazione va a formare 
-			la storia del progetto, da li il discorso delle best practice dei messaggi.
-			Vediamo allora qual'è il comando che ci permette di navigare tra questi messaggi
+"History navigation"
+[slide vuota]
+Dopo questo breve recap di quanto visto ieri cominciamo oggi con il vedere "come navigare la storia" di un repository git.
+Durante le nostre attività lavorative potremmo aver bisogno ad un certo punto di dover controllare cosa è successo al progetto, cosa è successo ai file versionati nel repository git e consultare appunto la storia del progetto.
+Per quanto detto ieri durante la spiegazione dei messaggi dei commit, questi sono un tassello molto importante in quanto proprio la loro concatenazione va a formare la storia del progetto, da li il discorso delle best practice dei messaggi.
+Vediamo allora qual'è il comando che ci permette di navigare tra questi messaggi
 			
-			[slide git log]
-			Il comando è log, nella sua forma più semplice possiamo utilizzarlo senza argomenti.
-			In questo modo infatti git log ci mostra la lista dei commit all'interno del repository per il branch corrente in ordine cronologico inverso, ossia il primo commit che 
-			vediamo è il più recente, spostandoci poi in basso andremo verso i commit piu' vecchi.
-			Vediamo dunque come le info dei commit viste diverse volte ieri, tornano di nuovo a giocare un ruolo importante, infatti abbiamo l'autore dei commit, i messaggi,
-			la data e il loro id sha.
-			Da qui infatti potremmo prendere l'identificativo di un commit e utilizzarlo con il comando show per vedere il contenuto di quel specifico commit.
+[slide git log]
+Il comando è log, nella sua forma più semplice possiamo utilizzarlo senza argomenti.
+In questo modo infatti git log ci mostra la lista dei commit all'interno del repository per il branch corrente in ordine cronologico inverso, ossia il primo commit che vediamo è il più recente, spostandoci poi in basso andremo verso i commit piu' vecchi.
+Vediamo dunque come le info dei commit viste diverse volte ieri, tornano di nuovo a giocare un ruolo importante, infatti abbiamo l'autore dei commit, i messaggi,la data e il loro id sha.
+Da qui infatti potremmo prendere l'identificativo di un commit e utilizzarlo con il comando show per vedere il contenuto di quel specifico commit.
 			
-			Ma vediamo un esempio dalla mia cli, anche per vedere come si scorre il log.
+Ma vediamo un esempio dalla mia cli, anche per vedere come si scorre il log.
 			
-			Per quanto riguarda le opzioni che possiamo dare in pasto a git log, queste sono tante e tra loro concatenabili e ci permettono di manipolare l'output del comando 
-				- a livello temporale, ad esempio possiamo farci stampare la lista commit in un certo intervallo di tempo
-				- a livello grafico, ossia possiamo farci stampare la lista dei commit stabilendo di preciso quale informazioni vedere.
-				- restringendo il contesto dei commit, vedremo tra poco cosa significa
-			Ad ogni modo potete trovare tutte le opzioni ben dettagliate nelle risorse che vi condividerò a fine sessione, il consiglio che vi do è di vederle, provarle e trovare
-			quelle che vi fanno più comodo.
-			Per questa sessione voglio parlarvi in particolare di due  argomenti per il comando git log.
+Per quanto riguarda le opzioni che possiamo dare in pasto a git log, queste sono tante e tra loro concatenabili e ci permettono di manipolare l'output del comando 
+    - a livello temporale, ad esempio possiamo farci stampare la lista commit in un certo intervallo di tempo
+	- a livello grafico, ossia possiamo farci stampare la lista dei commit stabilendo di preciso quale informazioni vedere.
+	- restringendo il contesto dei commit, vedremo tra poco cosa significa
+Ad ogni modo potete trovare tutte le opzioni ben dettagliate nelle risorse che vi condividerò a fine sessione, il consiglio che vi do è di vederle, provarle e trovare quelle che vi fanno più comodo.
+Per questa sessione voglio parlarvi in particolare di due  argomenti per il comando git log.
 			
-			[slide git log --author=john.doe]
-			Il primo argomento è l'author.
-			La sintassi la possiamo vedere dalla slide ed è quindi git log --author, seguito da un nome utente.
-			Grazie a questa variante di git log possiamo vedere tutti i commit, sempre in ordine cronologico inverso, eseguiti da quell'utente.
-			Questo può tornarci utile ad esempio se stiamo cercando una modifica introdotta da una persona in particolare che partecipa al nostro stesso progetto.
+[slide git log --author=john.doe]
+Il primo argomento è l'author.
+La sintassi la possiamo vedere dalla slide ed è quindi git log --author, seguito da un nome utente.
+Grazie a questa variante di git log possiamo vedere tutti i commit, sempre in ordine cronologico inverso, eseguiti da quell'utente.
+Questo può tornarci utile ad esempio se stiamo cercando una modifica introdotta da una persona in particolare che partecipa al nostro stesso progetto.
 			
-			[slide git log --grep=stringa]
-			Il secondo argomento è il grep.
-			La sintassi sarà quindi git log --grep=, seguito da una stringa.
-			Con questo argomento diremo a git log di mostrarci tutti quei commit che hanno i messaggi nei quali compare la parola passara all'argomento grep.
-			Inoltre, oltre ad una parola completa, possiamo passare a grep anche una regex.
+[slide git log --grep=stringa]
+Il secondo argomento è il grep.
+La sintassi sarà quindi git log --grep=, seguito da una stringa.
+Con questo argomento diremo a git log di mostrarci tutti quei commit che hanno i messaggi nei quali compare la parola passara all'argomento grep.
+Inoltre, oltre ad una parola completa, possiamo passare a grep anche una regex.
 			
-			"Create and use tag"
-			[slide tag output]
-			Ieri abbiamo visto alcuni comandi, come il diff o il checkout, che ci permettono di passargli in pasto diversi oggetti, ad esempio un nome branch o un commit id, e 
-			svolgeranno il proprio compito su quegli oggetti.
-			Nel caso dei commit, rispetto ai branch, abbiamo visto che è comunque un po' antipatico andare ogni volta a ripescare l'id del commit, perchè comunque è una stringa 
-			abbastanza lunga, e se anche possiamo usare il formato a 6 caratteri piuttosto che 40, risulta comunque qualcosa difficile da ricordare a memoria.
-			E' qui che entrano in gioco i tag.
-			Un tag in git non è altro che un point, un nome che punta ad uno specifico commmit.
-			Ne consegue che spesso i tag sono utilizzati nei processi di rilascio del software, in modo da marcare un punto nella storia del branch in cui ad esempio sappiamo
-			che il codice è stabile.
-			Riguardo la sintassi, la forma senza argomenti e quindi git tag, ci stampa la lista di tutti i tag nel repository.
+"Create and use tag"
+[slide tag output]
+Ieri abbiamo visto alcuni comandi, come il diff o il checkout, che ci permettono di passargli in pasto diversi oggetti, ad esempio un nome branch o un commit id, e svolgeranno il proprio compito su quegli oggetti.
+Nel caso dei commit, rispetto ai branch, abbiamo visto che è comunque un po' antipatico andare ogni volta a ripescare l'id del commit, perchè comunque è una stringa abbastanza lunga, e se anche possiamo usare il formato a 6 caratteri piuttosto che 40, risulta comunque qualcosa difficile da ricordare a memoria.
+E' qui che entrano in gioco i tag.
+Un tag in git non è altro che un point, un nome che punta ad uno specifico commmit.
+Ne consegue che spesso i tag sono utilizzati nei processi di rilascio del software, in modo da marcare un punto nella storia del branch in cui ad esempio sappiamo che il codice è stabile.
+Riguardo la sintassi, la forma senza argomenti e quindi git tag, ci stampa la lista di tutti i tag nel repository.
 			
-			[slide git tag -l "filter-keyword"]
-			E' possibile anche farci stampare anche la lista di tag filtrati per una parola chiave, come nell'esempio
+[slide git tag -l "filter-keyword"]
+E' possibile anche farci stampare anche la lista di tag filtrati per una parola chiave, come nell'esempio
 			
-			[slide git tag nome-tag]
-			Per creare un tag usiamo il comando con argomento il nome-tag, senza ulteriori parametri.
-			In questo modo il tag sarà creato a partire dal commit sul quale siamo.
+[slide git tag nome-tag]
+Per creare un tag usiamo il comando con argomento il nome-tag, senza ulteriori parametri.
+In questo modo il tag sarà creato a partire dal commit sul quale siamo.
 			
-			[slide git tag -a nome-tag hash-commit]
-			In alternativa possiamo creare un tag su un commit passato, in questo caso usiamo il parametro -a, passandogli poi il nome tag e l'hash del commit al quale 
-			vogliamo aggiungere la label tag.
+[slide git tag -a nome-tag hash-commit]
+In alternativa possiamo creare un tag su un commit passato, in questo caso usiamo il parametro -a, passandogli poi il nome tag e l'hash del commit al quale 
+vogliamo aggiungere la label tag.
 			
-			[slide git push origin nome-tag]
-			Per condividere uno specifico tag verso il repository remoto passiamo come argomento al push il nome "origin", che è l'identificativo del repository remoto 
-			e il nome del tag.
+[slide git push origin nome-tag]
+Per condividere uno specifico tag verso il repository remoto passiamo come argomento al push il nome "origin", che è l'identificativo del repository remoto 
+e il nome del tag.
 			
-			[slide git push origin --tags]
-			Per condividere invece tutti i tag creati sul proprio repo verso il repository remoto usiamo il comando push con argomento origin e --tags.
+[slide git push origin --tags]
+Per condividere invece tutti i tag creati sul proprio repo verso il repository remoto usiamo il comando push con argomento origin e --tags.
 			
-			[slide git tag -d nome-tag]
-			Per rimuovere un tag usiamo l'argomento -d e il nome-tag.
+[slide git tag -d nome-tag]
+Per rimuovere un tag usiamo l'argomento -d e il nome-tag.
 			
-			[git show nome-tag]
-			Riagganciandoci al discorso di prima, adesso possiamo fare riferimento ad uno specifico commit tramite il tag che è stato creato su di lui.
-			Questo vale sia per il comando show che 
+[git show nome-tag]
+Riagganciandoci al discorso di prima, adesso possiamo fare riferimento ad uno specifico commit tramite il tag che è stato creato su di lui.
+Questo vale sia per il comando show che 
 			
-			[slide git checkout nome-tag]
-			per il comando checkout.
-			Notare come git ci avvisa che non siamo più su uno specifico branch, siamo infatti "detached"
-			Se io volessi adesso, a partire dal commit indicato tramite il tag, creare un nuovo branch, posso usare il comando checkout con argomento -b e nome nuovo branch.
+[slide git checkout nome-tag]
+per il comando checkout.
+Notare come git ci avvisa che non siamo più su uno specifico branch, siamo infatti "detached"
+Se io volessi adesso, a partire dal commit indicato tramite il tag, creare un nuovo branch, posso usare il comando checkout con argomento -b e nome nuovo branch.
 			
 			
-			"Undo things"
-			[slide lista di modifiche che possiamo portare indietro]
-			Vediamo adesso come, dopo aver eseguito una certa azione, possiamo tornare indietro.
-			Qui la lista delle cose che possiamo rollbackare, quindi:
-				- Abbiamo appena fatto un commit, ma ci accorgiamo che ci siamo dimenticati di aggiugnere una modifica oppure abbiamo sbagliato a scrivere il messaggio
-				  allora possiamo usare il comando "git commit --amend".
-				  Questo comando prenderà il commit precedente e ci aggiungerà tutte le modifiche attualmente nella staging area, e poi ci chiederà di nuovo il messaggio 
-				  ma autocompletandolo con il messaggio precedente. In questo modo possiamo sia modificare il contenuto del commit che il messaggio appunto
-					esempio!
-				- Abbiamo appena aggiunto un file alla staging area, quindi andrebbe a finire nel prossimo commit ma ci ripensiamo.
-				  Come riportiamo quel file nella working directory?
-				  Con il comando "git reset HEAD nome-file"
-				  In questo modo il file si muoverà indietro rispetto alle tre zone viste ieri e tornerà nella working directory come file modificato.
-				- Abbiamo visto come riportare un file dalla staging area alla working directory.
-				  Vediamo come riportare un file modificato al suo contenuto originale della working directory.
-				  Il comando in questo caso è "git checkout -- nome-file", quindi stiamo letteralmente chiedendo a git di riprendere quel file dalla working directory pulita,
-				  senza le nostre modifiche, e sostituirlo al file modificato.
-				- C'è un commit nella nostra storia che introduce delle modifiche che vogliamo annullare, il comando è "git revert id-commit".
-				  Questo comando applicherà ai file una modifica inversa a quella introdotta da quel commit, annullandolo quindi
+"Undo things"
+[slide lista di modifiche che possiamo portare indietro]
+Vediamo adesso come, dopo aver eseguito una certa azione, possiamo tornare indietro.
+Qui la lista delle cose che possiamo rollbackare, quindi:
+    - Abbiamo appena fatto un commit, ma ci accorgiamo che ci siamo dimenticati di aggiugnere una modifica oppure abbiamo sbagliato a scrivere il messaggio
+	  allora possiamo usare il comando "git commit --amend".
+	  Questo comando prenderà il commit precedente e ci aggiungerà tutte le modifiche attualmente nella staging area, e poi ci chiederà di nuovo il messaggio ma autocompletandolo con il messaggio precedente. In questo modo possiamo sia modificare il contenuto del commit che il messaggio appunto
+	  esempio!
+	- Abbiamo appena aggiunto un file alla staging area, quindi andrebbe a finire nel prossimo commit ma ci ripensiamo.
+	  Come riportiamo quel file nella working directory?
+	  Con il comando "git reset HEAD nome-file"
+	  In questo modo il file si muoverà indietro rispetto alle tre zone viste ieri e tornerà nella working directory come file modificato.
+    - Abbiamo visto come riportare un file dalla staging area alla working directory.
+	  Vediamo come riportare un file modificato al suo contenuto originale della working directory.
+	  Il comando in questo caso è "git checkout -- nome-file", quindi stiamo letteralmente chiedendo a git di riprendere quel file dalla working directory pulita, senza le nostre modifiche, e sostituirlo al file modificato.
+	- C'è un commit nella nostra storia che introduce delle modifiche che vogliamo annullare, il comando è "git revert id-commit".
+	  Questo comando applicherà ai file una modifica inversa a quella introdotta da quel commit, annullandolo quindi
 			
-			"Create alias"
-			[slide alias esempio]
-			Infine una piccola chicca che può tornare utile soprattutto se trovate troppo lunghi alcuni comandi.
-			Proprio come in bash, anche in git è possibile definire degli alias, ovvero delle parole a piacere che invocano in realtà un comando git.
-			Nell'esempio l'alias che utilizzo io per il comando status, quindi invece di scrivere ogni volta git status scriverò "git ss".
-			Se vogliamo creare degli alias dobbiamo salvarli nel file .gitconfig.
+"Create alias"
+[slide alias esempio]
+Infine una piccola chicca che può tornare utile soprattutto se trovate troppo lunghi alcuni comandi.
+Proprio come in bash, anche in git è possibile definire degli alias, ovvero delle parole a piacere che invocano in realtà un comando git.
+Nell'esempio l'alias che utilizzo io per il comando status, quindi invece di scrivere ogni volta git status scriverò "git ss".
+Se vogliamo creare degli alias dobbiamo salvarli nel file .gitconfig.
 				 
 			
